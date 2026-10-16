@@ -1,0 +1,35 @@
+# Use in IntelliJ HTTP Client or VS Code REST Client.
+@baseUrl = http://localhost:8080
+
+### Create or merge
+POST {{baseUrl}}/api/ducks
+Content-Type: application/json
+
+{"color":"Red","size":"Large","price":10.00,"quantity":1000}
+
+### List
+GET {{baseUrl}}/api/ducks
+
+### Read for edit (replace ID with returned warehouse ID)
+GET {{baseUrl}}/api/ducks/1
+
+### Edit
+PUT {{baseUrl}}/api/ducks/1
+Content-Type: application/json
+
+{"price":10.00,"quantity":1000}
+
+### Quote
+POST {{baseUrl}}/api/store/orders
+Content-Type: application/json
+
+{"color":"Red","size":"Large","quantity":100,"destinationCountry":"USA","shippingMode":"Land"}
+
+### Invalid order (must reject a client price)
+POST {{baseUrl}}/api/store/orders
+Content-Type: application/json
+
+{"color":"Red","size":"Large","quantity":100,"destinationCountry":"USA","shippingMode":"Land","price":1}
+
+### Logical delete (run after the quote example)
+DELETE {{baseUrl}}/api/ducks/1
